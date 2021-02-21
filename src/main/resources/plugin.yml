@@ -1,0 +1,5 @@
+name: BowFix
+version: 1.0
+description: A plugin to fix bow-boosting
+author: CyberFlame
+main: net.cyberflame.bowfix.Main
