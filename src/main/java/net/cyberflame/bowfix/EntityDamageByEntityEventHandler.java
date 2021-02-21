@@ -45,7 +45,7 @@ public class EntityDamageByEntityEventHandler implements Listener {
               Vector velocity = paramPlayer.getEyeLocation().getDirection().multiply(this.bowFix.getConfig().getDouble("settings.velocity-multiplier", 2.5D));
               velocity.setY(0.33D);
               paramPlayer.setVelocity(velocity);
-            }0L);
+            });
       } 
     } 
   }
