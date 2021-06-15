@@ -46,7 +46,7 @@ public class EntityDamageByEntityEventHandler implements Listener {
         } 
         
         e.setDamage(1.0D);
-        this.bowFix.getServer().getScheduler().runTaskLater((Plugin)this.bowFix, () -> {
+        Bukkit.getServer().getScheduler().runTaskLater((Plugin)this.bowFix, () -> {
               Vector velocity = paramPlayer.getEyeLocation().getDirection().multiply(this.bowFix.getConfig().getDouble("settings.velocity-multiplier", 2.5D));
               velocity.setY(0.33D);
               paramPlayer.setVelocity(velocity);
