@@ -1,6 +1,7 @@
 package net.cyberflame.bowfix;
 
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
@@ -25,14 +26,17 @@ public class EntityDamageByEntityEventHandler implements Listener {
     if (e.getDamager() instanceof Projectile && e.getEntity() instanceof Player) {
       Player p = (Player)e.getEntity();
       Projectile projectile = (Projectile)e.getDamager();
-      if (projectile.getType() == EntityType.ARROW && projectile.getShooter() instanceof Player && ((Player)projectile.getShooter()).getUniqueId().equals(p.getUniqueId())) {
+      if (projectile.getType() == EntityType.ARROW && projectile.getShooter() instanceof Player &&
+              ((Player)projectile.getShooter()).getUniqueId().equals(p.getUniqueId()))
+      {
         ItemStack item = p.getItemInHand();
         if (this.bowFix.getConfig().getBoolean("settings.punch-only", false) && !item.containsEnchantment(Enchantment.ARROW_KNOCKBACK)) {
           return;
         }
         if (this.bowFix.getConfig().getBoolean("settings.punch-only", true) && item.containsEnchantment(Enchantment.ARROW_KNOCKBACK)) {
           int enchLevel = item.getEnchantmentLevel(Enchantment.ARROW_KNOCKBACK);
-          if (enchLevel != 2) {
+          if (enchLevel != 2)
+          {
             return;
           }
         } 
@@ -47,9 +51,9 @@ public class EntityDamageByEntityEventHandler implements Listener {
         
         e.setDamage(1.0D);
         Bukkit.getServer().getScheduler().runTaskLater((Plugin)this.bowFix, () -> {
-              Vector velocity = paramPlayer.getEyeLocation().getDirection().multiply(this.bowFix.getConfig().getDouble("settings.velocity-multiplier", 2.5D));
+              Vector velocity = p.getEyeLocation().getDirection().multiply(this.bowFix.getConfig().getDouble("settings.velocity-multiplier", 2.5D));
               velocity.setY(0.33D);
-              paramPlayer.setVelocity(velocity);
+              p.setVelocity(velocity);
             }, 0L);
       } 
     } 

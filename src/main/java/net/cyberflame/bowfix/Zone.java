@@ -2,7 +2,8 @@ package net.cyberflame.bowfix;
 
 import org.bukkit.Location;
 
-public class Zone {
+public class Zone
+{
   public static boolean contains(Location loc, int x1, int x2, int z1, int z2) {
     ZoneVector curr = new ZoneVector(loc.getBlockX(), loc.getBlockZ());
     ZoneVector min = new ZoneVector(Math.min(x1, x2), Math.min(z1, z2));
